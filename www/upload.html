@@ -1,0 +1,38 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+   <meta charset="utf-8" />
+   <title>Upload images to server using Node JS</title>
+   <script src="Scripts/jquery-3.1.1.min.js"></script>
+   <script src="Scripts/jquery.form.min.js"></script>
+</head>
+
+<body>
+   <form id="frmUploader" enctype="multipart/form-data" action="api/upload/" method="post">
+      <input type="file" name="imgUploader" multiple />
+      <input type="submit" name="submit" id="btnSubmit" value="Upload" />
+   </form>
+
+   <script>
+      $(document).ready(function () {
+         function showRequest(formData, jqForm, options) { 
+            alert('Uploading is starting.'); 
+            return true; 
+         }
+         function showResponse(responseText, statusText, xhr, $form) { 
+            alert('status: ' + statusText + '\n\nresponseText: \n' + responseText ); 
+         }
+
+         var options = {
+            beforeSubmit: showRequest, 
+            success: showResponse
+         }
+
+         $('#frmUploader').submit(function () { 
+            $(this).ajaxSubmit(options);  
+         });
+      });
+   </script>
+</body>
+
+</html>
